@@ -15,7 +15,7 @@ body{
 .fa-compass{
     color: #fe424d;
     font-size: 2rem;
-} */
+} 
 .nav-link{
     color:#222222 !important;
 }
@@ -44,8 +44,11 @@ body{
 }
 .f-info-socials i {
     
-    font-size: 1.2 rem;   
+    font-size: 1.2 rem; 
+     
     margin-right:  1 rem;
+      margin-right: 10px;
+ 
 }
 
  
@@ -125,4 +128,15 @@ body{
 .show-card{
     padding-left: 0%;
     padding-right:0%;
+}
+#map {
+  height: 300px;
+  width: 80vh;
+}
+.leaflet-container {
+  border-radius: 1rem;
+}
+.leaflet-control-attribution {
+  font-size: 10px;
+  opacity: 0.4;
 }

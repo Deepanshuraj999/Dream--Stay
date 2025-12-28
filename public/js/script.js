@@ -11,6 +11,8 @@
       if (!form.checkValidity()) {
         event.preventDefault()
         event.stopPropagation()
+      }else{/// this is new added line
+         form.querySelector('button[type="submit"]').disabled = true;
       }
 
       form.classList.add('was-validated')

@@ -1,42 +1,161 @@
 <% layout('layouts/boilerplate') %>
+  <style>
+    #filters {
 
-  <body>
-    <h3>All listings</h3>
-    <!-- <form method="get" action="/listings/new">
-        <button>Create New Listing</button>
-    </form> -->
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    .filter {
+      text-align: center;
+      margin-right: 20px;
+      margin-top: 2rem;
+      opacity: 0.7;
+    }
+
+    .filter:hover {
+      opacity: 1;
+      cursor: pointer;
+    }
+
+    .filter p {
+      font-size: 0.9rem;
+    }
+
+    .text-Info {
+      display: none;
+    }
+
+    .tax-toggle {
+      border: 1px solid black;
+      margin-left: auto;
+      margin-top: 2rem;
+      border-radius: 1rem;
+      height: 3.25rem;
+      padding: 1rem;
+      margin-left: 5rem;
+      display: flex;
+      align-items: center;
+    }
+  </style>
 
 
+  <div id="filters">
+    <div class="filter">
 
-    <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1">
+      <div> <i class="fa-solid fa-fire"></i> </div>
+      <p>Trending</p>
+    </div>
+    <div class="filter">
 
+      <div> <i class="fa-solid fa-bed"></i> </div>
+      <p>Rooms</p>
+    </div>
+    <div class="filter">
 
-      <% for(let listing of allListings){%>
-        <a  href="listings/<%=listing._id%>" class="listing-link">
-          <div class="card col listing-card">
-            <img src="<%= listing.image && listing.image.url && listing.image.url.trim() !== '' 
-            ? listing.image.url 
-            : 'https://source.unsplash.com/800x600/?villa' %>" class="card-img-top" alt="<%= listing.title %>"
-              style="height: 20rem" />
-            <div class="card-img-overlay"></div>
-            <div class="card-body">
-              <p class="card-text">
-                <b>
-                  <%=listing.title%> <br />
-                </b>
+      <div> <i class="fa-solid fa-fire"></i> </div>
+      <p>Trending</p>
+    </div>
+    <div class="filter">
 
-                &#8377; <%=listing.price.toLocaleString("en-IN")%>/ night
-                
-              </p>
+      <div> <i class="fa-solid fa-bed"></i> </div>
+      <p>Rooms</p>
+    </div>
+    <div class="filter">
 
-            </div>
+      <div><i class="fa-solid fa-mountain-city"></i> </div>
+      <p>Iconic Cities</p>
+    </div>
+    <div class="filter">
 
-          </div>
-          
-        </a>
-          <% }%>
+      <div> <i class="fa-solid fa-mountain"></i></div>
+      <p>Mountain</p>
+    </div>
+    <div class="filter">
 
+      <div> <i class="fa-brands fa-fort-awesome"></i> </div>
+      <p>Castles</p>
+    </div>
+    <div class="filter">
+
+      <div> <i class="fa-solid fa-person-swimming"></i></div>
+      <p>Amazing Polls</p>
     </div>
 
+    <div class="filter">
 
-  </body>
+      <div> <i class="fa-solid fa-campground"></i></div>
+      <p>Camping</p>
+    </div>
+
+    <div class="filter">
+
+      <div><i class="fa-solid fa-cow"></i></div>
+      <p>Farms</p>
+    </div>
+
+    <div class="filter">
+
+      <div><i class="fa-solid fa-chess-knight"></i> </div>
+      <p>Cheeses</p>
+    </div>
+    <div class="filter">
+
+      <div><i class="fa-solid fa-igloo"></i> </div>
+      <p>Doms</p>
+    </div>
+  
+    <div class="tax-toggle">
+      <div class="form-check-reverse form-switch">
+        <input class="form-check-input" type="checkbox" role="switch" id="switchCheckDefault">
+        <label class="form-check-label" for="switchCheckDefault">Display total after taxes</label>
+      </div>
+    </div>
+
+  </div>
+
+
+
+
+
+
+  <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 mt-3">
+
+    <% for (let listing of allListings) { %>
+      <a href="/listings/<%= listing._id %>" class="listing-link">
+        <div class="card col listing-card">
+
+          <img src="<%=listing.image.url %>" class="card-img-top" alt="<%= listing.title %>" style="height: 20rem" />
+
+          <div class="card-img-overlay"></div>
+
+          <div class="card-body">
+            <p class="card-text">
+              <b>
+                <%= listing.title %>
+              </b><br>
+              &#8377; <%= listing.price.toLocaleString('en-IN') %>/ night
+                <i class="text-Info"> &nbsp; &nbsp;+18% GST</i>
+
+            </p>
+          </div>
+
+        </div>
+      </a>
+      <% } %>
+
+  </div>
+  <script>
+    let taxSwitch = document.getElementById('switchCheckDefault');
+    taxSwitch.addEventListener("change", () => {
+      let taxInfo = document.getElementsByClassName('text-Info');
+      for (info of taxInfo) {
+        if (info.style.display != 'inline') {
+          info.style.display = "inline";
+        } else {
+          info.style.display = "none";
+        }
+
+      }
+    });
+  </script>
